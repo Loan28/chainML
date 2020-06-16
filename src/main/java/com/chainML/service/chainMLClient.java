@@ -124,10 +124,9 @@ public class chainMLClient {
         chainMLClient client = new chainMLClient(Linux, 50051);
 
         try {
-            client.uploadFile("tmp/mobilenet.tflite", "model");
-            //client.uploadFile("tmp/label.txt", "label");
-            //client.uploadFile("tmp/index.jpeg", "image");
-            // client.downloadFile("laptop.jpg");
+            //client.uploadFile("tmp/mobilenet.tflite", "model");
+            client.uploadFile("tmp/label.txt", "label");
+            client.uploadFile("tmp/index.jpeg", "image");
         } finally {
             client.shutdown();
         }
