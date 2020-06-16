@@ -1,0 +1,74 @@
+<component name="ArtifactManager">
+  <artifact name="chainML.main:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/chainML_main_jar</output-path>
+    <root id="root">
+      <element id="archive" name="chainML.main.jar">
+        <element id="directory" name="META-INF">
+          <element id="file-copy" path="$PROJECT_DIR$/tools/META-INF/MANIFEST.MF" />
+        </element>
+        <element id="module-output" name="chainML.main" />
+      </element>
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-context:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-auth:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-core:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-codec-http:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: org.checkerframework:checker-compat-qual:2.5.5" />
+      <element id="library" level="project" name="Gradle: com.google.guava:guava:29.0-android" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-handler:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-handler-proxy:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: com.google.protobuf:protobuf-java-util:3.12.0" />
+      <element id="library" level="project" name="Gradle: com.fasterxml.jackson.core:jackson-core:2.10.1" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-protobuf:1.29.0" />
+      <element id="library" level="project" name="Gradle: com.squareup.okhttp:okhttp:2.7.4" />
+      <element id="library" level="project" name="Gradle: io.opencensus:opencensus-proto:0.2.0" />
+      <element id="library" level="project" name="Gradle: junit:junit:4.12" />
+      <element id="library" level="project" name="Gradle: com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava" />
+      <element id="library" level="project" name="Gradle: com.google.j2objc:j2objc-annotations:1.3" />
+      <element id="library" level="project" name="Gradle: com.google.http-client:google-http-client-jackson2:1.34.0" />
+      <element id="library" level="project" name="Gradle: org.apache.commons:commons-lang3:3.5" />
+      <element id="library" level="project" name="Gradle: com.squareup.okio:okio:1.13.0" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-netty-shaded:1.29.0" />
+      <element id="library" level="project" name="Gradle: org.codehaus.mojo:animal-sniffer-annotations:1.18" />
+      <element id="library" level="project" name="Gradle: org.hamcrest:hamcrest-core:1.3" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-codec:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: com.google.protobuf:protobuf-java:3.12.0" />
+      <element id="library" level="project" name="Gradle: com.google.code.findbugs:jsr305:3.0.2" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-protobuf-lite:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-okhttp:1.29.0" />
+      <element id="library" level="project" name="Gradle: javax.annotation:javax.annotation-api:1.3.2" />
+      <element id="library" level="project" name="Gradle: io.opencensus:opencensus-api:0.24.0" />
+      <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpclient:4.5.10" />
+      <element id="library" level="project" name="Gradle: com.google.api.grpc:proto-google-common-protos:1.17.0" />
+      <element id="library" level="project" name="Gradle: com.google.auto.value:auto-value-annotations:1.7" />
+      <element id="library" level="project" name="Gradle: com.google.guava:failureaccess:1.0.1" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-transport:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-resolver:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: com.google.http-client:google-http-client:1.34.0" />
+      <element id="library" level="project" name="Gradle: com.google.errorprone:error_prone_annotations:2.3.4" />
+      <element id="library" level="project" name="Gradle: com.google.auth:google-auth-library-credentials:0.20.0" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-services:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-testing:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-codec-http2:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-api:1.29.0" />
+      <element id="library" level="project" name="Gradle: com.google.auth:google-auth-library-oauth2-http:0.20.0" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-common:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-netty:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-grpclb:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.opencensus:opencensus-contrib-http-util:0.24.0" />
+      <element id="library" level="project" name="Gradle: com.google.android:annotations:4.1.1.4" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-stub:1.29.0" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-codec-socks:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-xds:1.29.0" />
+      <element id="library" level="project" name="Gradle: commons-logging:commons-logging:1.2" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-all:1.29.0" />
+      <element id="library" level="project" name="Gradle: org.conscrypt:conscrypt-openjdk-uber:2.2.1" />
+      <element id="library" level="project" name="Gradle: io.grpc:grpc-alts:1.29.0" />
+      <element id="library" level="project" name="Gradle: com.google.code.gson:gson:2.8.6" />
+      <element id="library" level="project" name="Gradle: io.netty:netty-buffer:4.1.48.Final" />
+      <element id="library" level="project" name="Gradle: io.perfmark:perfmark-api:0.19.0" />
+      <element id="library" level="application" name="Bundled Protobuf Distribution" />
+      <element id="library" level="project" name="Gradle: commons-codec:commons-codec:1.11" />
+      <element id="library" level="project" name="Gradle: org.apache.httpcomponents:httpcore:4.4.12" />
+    </root>
+  </artifact>
+</component>
