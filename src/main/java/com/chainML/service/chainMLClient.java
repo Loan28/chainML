@@ -121,11 +121,11 @@ public class chainMLClient {
         String Android = "192.168.1.77";
         String Linux = "0.0.0.0";
         String RPI = "192.168.1.78";
-        chainMLClient client = new chainMLClient(Linux, 50051);
+        chainMLClient client = new chainMLClient(RPI, 50051);
 
         try {
             //client.uploadFile("tmp/mobilenet.tflite", "model");
-            client.uploadFile("tmp/label.txt", "label");
+            //client.uploadFile("tmp/label.txt", "label");
             client.uploadFile("tmp/index.jpeg", "image");
         } finally {
             client.shutdown();
