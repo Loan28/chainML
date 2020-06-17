@@ -12,7 +12,7 @@ public class Processing {
             System.out.println(s);
         }
 
-        chainMLClient client = new chainMLClient("192.168.1.78", 50051);
+        chainMLClient client = new chainMLClient("192.168.1.67", 50051);
         client.uploadFile("img/"+ imageID +".jpeg", "image");
 
 
