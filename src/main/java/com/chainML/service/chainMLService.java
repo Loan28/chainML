@@ -38,7 +38,7 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
 
                 }
                 ByteString chunkData = request.getChunkData();
-                logger.info("receive " + type_file.getTypefile() + " chunk with size: " + chunkData.size());
+                //logger.info("receive " + type_file.getTypefile() + " chunk with size: " + chunkData.size());
                 if (imageData == null) {
                     logger.info( type_file.getTypefile()+ " info was not sent before");
                     responseObserver.onError(
@@ -84,7 +84,7 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
                         imageID = imageStore.Save(imageType, imageData, "label");
                     }
 
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     responseObserver.onError(
                             Status.INTERNAL
                                     .withDescription("cannot save the " + type_file.getTypefile() + " to the store: " + e.getMessage())

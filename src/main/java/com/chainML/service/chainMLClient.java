@@ -43,14 +43,14 @@ public class chainMLClient {
     }
 
     public void shutdown() throws InterruptedException {
-        channel.shutdown().awaitTermination(5, TimeUnit.SECONDS);
+        channel.shutdown().awaitTermination(10, TimeUnit.SECONDS);
     }
 
     //Function to upload file to the server, arg: file path
     public void uploadFile(String imagePath, String type) throws InterruptedException {
         final CountDownLatch finishLatch = new CountDownLatch(1);
 
-        StreamObserver<UploadFileRequest> requestObserver = asyncStub.withDeadlineAfter(5,TimeUnit.SECONDS)
+        StreamObserver<UploadFileRequest> requestObserver = asyncStub.withDeadlineAfter(20,TimeUnit.SECONDS)
                 .uploadFile(new StreamObserver<UploadFileResponse>() {
                     @Override
                     public void onNext(UploadFileResponse response) {
@@ -93,7 +93,6 @@ public class chainMLClient {
                 if (n <= 0) {
                     break;
                 }
-
                 if (finishLatch.getCount() == 0) {
                     return;
                 }
@@ -121,12 +120,12 @@ public class chainMLClient {
         String Android = "192.168.1.77";
         String Linux = "0.0.0.0";
         String RPI = "192.168.1.78";
-        chainMLClient client = new chainMLClient(RPI, 50051);
+        chainMLClient client = new chainMLClient(Linux, 50051);
 
         try {
-            //client.uploadFile("tmp/mobilenet.tflite", "model");
-            //client.uploadFile("tmp/label.txt", "label");
-            client.uploadFile("tmp/index.jpeg", "image");
+            client.uploadFile("tmp/mobilenet.tflite", "model");
+            client.uploadFile("tmp/label.txt", "label");
+            //client.uploadFile("tmp/index.jpeg", "image");
         } finally {
             client.shutdown();
         }
