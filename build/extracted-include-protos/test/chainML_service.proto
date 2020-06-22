@@ -34,10 +34,25 @@ message TypeFile{
   string typefile = 1;
 }
 
-message DownloadFileRequest {
-  string fileName = 1;
+
+message Order {
+  string nextDevice = 2;
+}
+
+message replyOrder {
+  string reply = 1;
+}
+// The request message containing the user's name.
+message OrderRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings
+message OrderReply {
+  string message = 1;
 }
 
 service chainMLService {
+  rpc DefineOrder (OrderRequest) returns (OrderReply) {}
   rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse) {};
 }

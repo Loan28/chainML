@@ -66,7 +66,7 @@ public class chainMLClient {
 
                     @Override
                     public void onCompleted() {
-                        logger.info("image uploaded");
+                        logger.info("file uploaded");
                         finishLatch.countDown();
                     }
                 });
@@ -75,7 +75,7 @@ public class chainMLClient {
         try {
             fileInputStream = new FileInputStream(imagePath);
         } catch (FileNotFoundException e) {
-            logger.log(Level.SEVERE, "cannot read image file " + e.getMessage());
+            logger.log(Level.SEVERE, "cannot read file " + e.getMessage());
         }
 
         String imageType = imagePath.substring(imagePath.lastIndexOf("."));
@@ -85,7 +85,7 @@ public class chainMLClient {
 
         try {
             requestObserver.onNext(request);
-            logger.info("sent image info" + info);
+            logger.info("sent file info" + info);
 
             byte[] buffer = new byte[1024];
             while (true) {
@@ -100,7 +100,7 @@ public class chainMLClient {
                         .setChunkData(ByteString.copyFrom(buffer, 0, n))
                         .build();
                 requestObserver.onNext(request);
-                logger.info("sent image chunk with size: " + n);
+                logger.info("sent file chunk with size: " + n);
             }
         }catch (Exception e){
             logger.log(Level.SEVERE, "unexcepted error: " + e.getMessage());

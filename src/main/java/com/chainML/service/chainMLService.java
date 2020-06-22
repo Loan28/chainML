@@ -13,10 +13,20 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
 
     private static final Logger logger = Logger.getLogger(chainMLService.class.getName());
     private ImageStore imageStore;
+    String nextDevice;
 
     public chainMLService(ImageStore imageStore) {
         this.imageStore = imageStore;
     }
+
+    @Override
+    public void defineOrder(OrderRequest request, StreamObserver<OrderReply> responseObserver) {
+        OrderReply reply = OrderReply.newBuilder().setMessage("Hello " + request.getName()).build();
+        nextDevice = request.getName();
+        responseObserver.onNext(reply);
+        responseObserver.onCompleted();
+    }
+
 
     @Override
     public StreamObserver<UploadFileRequest> uploadFile(StreamObserver<UploadFileResponse> responseObserver) {
@@ -75,7 +85,7 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
                     if(type_file.getTypefile().equals("image")) {
                         imageID = imageStore.Save(imageType, imageData, "image");
                         Processing process = new Processing();
-                        process.ProcessImage(imageID);
+                        process.ProcessImage(imageID,imageType, nextDevice);
                     } else if (type_file.getTypefile().equals("model")) {
                         imageID = imageStore.Save(imageType, imageData, "model");
                     }
