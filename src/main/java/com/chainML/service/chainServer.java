@@ -13,13 +13,13 @@ public class chainServer {
     private final Server server;
 
 
-    public chainServer(int port, ImageStore imageStore) {
-        this(ServerBuilder.forPort(port), port, imageStore);
+    public chainServer(int port, FileStore fileStore) {
+        this(ServerBuilder.forPort(port), port, fileStore);
     }
 
-    public chainServer(ServerBuilder serverBuilder, int port, ImageStore imageStore){
+    public chainServer(ServerBuilder serverBuilder, int port, FileStore fileStore){
         this.port = port;
-        chainMLService Service = new chainMLService(imageStore);
+        chainMLService Service = new chainMLService(fileStore);
         server = serverBuilder.addService(Service).build();
     }
 
@@ -52,7 +52,7 @@ public class chainServer {
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException {
-        DiskImageStore imageStore = new DiskImageStore("img");
+        DiskFileStore imageStore = new DiskFileStore("img");
         chainServer server = new chainServer(50051, imageStore);
         server.start();
         server.blockUntilShutdown();

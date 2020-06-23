@@ -78,8 +78,8 @@ public class chainMLClient {
             logger.log(Level.SEVERE, "cannot read file " + e.getMessage());
         }
 
-        String imageType = imagePath.substring(imagePath.lastIndexOf("."));
-        ImageInfo info = ImageInfo.newBuilder().setImageType(imageType).build();
+        String fileType = imagePath.substring(imagePath.lastIndexOf("."));
+        FileInfo info = FileInfo.newBuilder().setImageType(fileType).build();
         TypeFile typeFile = TypeFile.newBuilder().setTypefile(type).build();
         UploadFileRequest request = UploadFileRequest.newBuilder().setInfo(info).setTypeFile(typeFile).build();
 
@@ -112,22 +112,6 @@ public class chainMLClient {
 
         if (!finishLatch.await(1, TimeUnit.MINUTES)){
             logger.warning("request cannot finish within 1 minute");
-        }
-    }
-
-    public static void main(String[] args) throws InterruptedException {
-
-        String Android = "192.168.1.77";
-        String Linux = "0.0.0.0";
-        String RPI = "192.168.1.78";
-        chainMLClient client = new chainMLClient(Linux, 50051);
-
-        try {
-            client.uploadFile("tmp/mobilenet.tflite", "model");
-            client.uploadFile("tmp/label.txt", "label");
-            //client.uploadFile("tmp/index.jpeg", "image");
-        } finally {
-            client.shutdown();
         }
     }
 

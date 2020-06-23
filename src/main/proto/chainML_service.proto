@@ -7,7 +7,7 @@ option java_multiple_files = true;
 
 message UploadFileRequest {
   oneof data {
-    ImageInfo info = 1;
+    FileInfo info = 1;
     bytes chunk_data = 2;
   };
   TypeFile type_file = 3;
@@ -22,7 +22,7 @@ message DataChunk {
   int32 size = 2;
 }
 
-message ImageInfo {
+message FileInfo {
   string image_type = 2;
 }
 

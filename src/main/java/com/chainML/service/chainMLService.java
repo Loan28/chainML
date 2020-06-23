@@ -12,11 +12,11 @@ import java.util.logging.Logger;
 public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
 
     private static final Logger logger = Logger.getLogger(chainMLService.class.getName());
-    private ImageStore imageStore;
+    private FileStore fileStore;
     String nextDevice;
 
-    public chainMLService(ImageStore imageStore) {
-        this.imageStore = imageStore;
+    public chainMLService(FileStore fileStore) {
+        this.fileStore = fileStore;
     }
 
     @Override
@@ -31,25 +31,24 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
     @Override
     public StreamObserver<UploadFileRequest> uploadFile(StreamObserver<UploadFileResponse> responseObserver) {
         return new StreamObserver<UploadFileRequest>() {
-            private String laptopID;
-            private String imageType;
-            private ByteArrayOutputStream imageData;
+            private String fileType;
+            private ByteArrayOutputStream fileData;
             private TypeFile type_file;
 
             @Override
             public void onNext(UploadFileRequest request) {
                 if(request.getDataCase() == UploadFileRequest.DataCase.INFO) {
-                    ImageInfo info = request.getInfo();
+                    FileInfo info = request.getInfo();
                     type_file = request.getTypeFile();
                     logger.info("receive " + type_file.getTypefile() + " info" + info);
-                    imageType = info.getImageType();
-                    imageData = new ByteArrayOutputStream();
+                    fileType = info.getImageType();
+                    fileData = new ByteArrayOutputStream();
                     return;
 
                 }
                 ByteString chunkData = request.getChunkData();
                 logger.info("receive " + type_file.getTypefile() + " chunk with size: " + chunkData.size());
-                if (imageData == null) {
+                if (fileData == null) {
                     logger.info( type_file.getTypefile()+ " info was not sent before");
                     responseObserver.onError(
                             Status.INVALID_ARGUMENT
@@ -59,7 +58,7 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
                     return;
                 }
                 try {
-                    chunkData.writeTo(imageData);
+                    chunkData.writeTo(fileData);
                 } catch (IOException e) {
                     responseObserver.onError(
                             Status.INTERNAL
@@ -78,20 +77,20 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
 
             @Override
             public void onCompleted() {
-                String imageID = "";
-                int imageSize = imageData.size();
+                String fileID = "";
+                int imageSize = fileData.size();
 
                 try {
                     if(type_file.getTypefile().equals("image")) {
-                        imageID = imageStore.Save(imageType, imageData, "image");
+                        fileID = fileStore.Save(fileType, fileData, "image");
                         Processing process = new Processing();
-                        process.ProcessImage(imageID,imageType, nextDevice);
+                        process.ProcessImage(fileID, fileType, nextDevice);
                     } else if (type_file.getTypefile().equals("model")) {
-                        imageID = imageStore.Save(imageType, imageData, "model");
+                        fileID = fileStore.Save(fileType, fileData, "model");
                     }
                     else
                     {
-                        imageID = imageStore.Save(imageType, imageData, "label");
+                        fileID = fileStore.Save(fileType, fileData, "label");
                     }
 
                 } catch (IOException | InterruptedException e) {
@@ -103,7 +102,7 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
                 }
 
                 UploadFileResponse response = UploadFileResponse.newBuilder()
-                        .setId(imageID)
+                        .setId(fileID)
                         .setSize(imageSize)
                         .build();
                 responseObserver.onNext(response);

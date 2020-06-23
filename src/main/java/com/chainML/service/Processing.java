@@ -4,9 +4,9 @@ import java.io.*;
 import java.nio.charset.StandardCharsets;
 
 public class Processing {
-    public void ProcessImage(String imageID, String imageType, String nextDevice) throws IOException, InterruptedException {
+    public void ProcessImage(String fileID, String fileType, String nextDevice) throws IOException, InterruptedException {
         String s = null;
-        Process p = Runtime.getRuntime().exec("python3 python/tflite.py img/"+ imageID + imageType + " img/label.txt img/model.tflite");
+        Process p = Runtime.getRuntime().exec("python3 python/tflite.py img/"+ fileID + fileType + " img/label.txt img/model.tflite");
         //Process p = Runtime.getRuntime().exec("python3 python/tflite.py img/image.jpg img/label.txt img/model.tflite");
 
         BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
@@ -16,18 +16,18 @@ public class Processing {
 
         if(nextDevice.equals("Linux")){
             chainMLClient client = new chainMLClient("192.168.1.73", 50051);
-            client.uploadFile("img/"+ imageID+imageType, "image");
+            client.uploadFile("img/"+ fileID+fileType, "image");
             client.shutdown();
         } else if(nextDevice.equals("RPI"))
         {
             chainMLClient client = new chainMLClient("192.168.1.75", 50051);
-            client.uploadFile("img/"+ imageID +imageType, "image");
+            client.uploadFile("img/"+ fileID +fileType, "image");
             client.shutdown();
         }
         else if(nextDevice.equals("Android"))
         {
             chainMLClient client = new chainMLClient("192.168.1.67", 50051);
-            client.uploadFile("img/"+ imageID+imageType, "image");
+            client.uploadFile("img/"+ fileID+fileType, "image");
             client.shutdown();
         }
         else if(nextDevice.equals("end"))
