@@ -41,7 +41,17 @@ public class chainMLClient {
         blockingStub = chainMLServiceGrpc.newBlockingStub(channel);
         asyncStub = chainMLServiceGrpc.newStub(channel);
     }
-
+    public void defineOrder(String name) {
+        OrderRequest request = OrderRequest.newBuilder().setName(name).build();
+        OrderReply response;
+        try {
+            response = blockingStub.defineOrder(request);
+            logger.info(response.getMessage());
+        } catch (StatusRuntimeException e) {
+            logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+            return;
+        }
+    }
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(10, TimeUnit.SECONDS);
     }

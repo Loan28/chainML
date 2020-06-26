@@ -3,13 +3,18 @@ import tensorflow_hub as hub
 from matplotlib import pyplot as plt
 import numpy as np
 import sys
-from skimage import data
 from PIL import Image
+import sys
 
 
-module = hub.KerasLayer("resnet_model/")
+args = sys.argv
+file_name = args[1]
+label_file = args[2]
+model = args[3]
 
-im = tf.io.read_file("index.jpeg")
+module = hub.KerasLayer("efficientnet/")
+
+im = tf.io.read_file(file_name)
 im = tf.image.decode_jpeg(im, channels=3) #color images
 im = tf.image.convert_image_dtype(im, tf.float32)
 #convert unit8 tensor to floats in the [0,1]range

@@ -50,4 +50,5 @@ top_k = results.argsort()[-5:][::-1]
 #        print('{0:08.6f}'.format(float(results[i]))+":", labels[i])
 #    else:
 #        print('{0:08.6f}'.format(float(results[i]/255.0))+":", labels[i])
-print(labels[top_k[0]])
+sprint(labels[top_k[0]])
+print(results);

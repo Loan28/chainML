@@ -2,6 +2,7 @@ package com.chainML.service;
 import java.io.ByteArrayOutputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
@@ -15,7 +16,6 @@ public class DiskFileStore implements FileStore {
     }
     @Override
     public String Save(String fileType, ByteArrayOutputStream fileData, String fileID) throws IOException {
-        //String imageID = UUID.randomUUID().toString();
         String imagePath = String.format("%s/%s%s", fileFolder, fileID, fileType);
         FileOutputStream fileOutputStream = new FileOutputStream(imagePath);
         fileData.writeTo(fileOutputStream);
