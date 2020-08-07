@@ -65,7 +65,7 @@ public class chainMLService extends chainMLServiceGrpc.chainMLServiceImplBase {
         String OS = System.getProperty("os.name").toLowerCase();
         DefineControllerReply reply = DefineControllerReply.newBuilder().setMessage("Device :" + OS + "\n" + "Number of processors: " +
                                 + numberOfProcessors + "\n" + "Memory available: \"\n" +
-                                + memory + " bytes \nModels available on the device: \ndeeplabv3_257.tflite\nresnet_model_v2\nefficientnet\ninception_v1\nface_detection.pb\nposenet_mobilenet_100_257_257.tflite").build();
+                                + memory + " bytes \nModels available on the device: \ndeeplabv3_257.tflite\nresnet_model_v2\nefficientnet\ninception_v1\nface_detection.pb\nposenet_mobilenet_100_257_257.tflite\ndog_breed.lite").build();
         responseObserver.onNext(reply);
         responseObserver.onCompleted();
     }

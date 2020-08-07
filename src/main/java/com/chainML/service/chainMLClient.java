@@ -42,6 +42,8 @@ public class chainMLClient {
             return;
         }
     }
+    //
+    //Send upload time to the controller
     public void sendUploadTime(double execTime, String device) {
         TimeRequest request = TimeRequest.newBuilder().setTime(execTime).setDevice(device).build();
         TimeReply response;
@@ -69,7 +71,7 @@ public class chainMLClient {
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(10, TimeUnit.SECONDS);
     }
-
+    //
     //Function to upload file to the server, arg: file path, type of file sent
     public void uploadFile(String imagePath, String type) throws InterruptedException {
         final CountDownLatch finishLatch = new CountDownLatch(1);
