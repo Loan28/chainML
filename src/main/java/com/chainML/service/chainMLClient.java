@@ -6,22 +6,12 @@ import io.grpc.ManagedChannel;
 import com.chainML.pb.chainMLServiceGrpc.chainMLServiceBlockingStub;
 
 import io.grpc.ManagedChannelBuilder;
-import io.grpc.Status;
 import io.grpc.StatusRuntimeException;
 import io.grpc.stub.StreamObserver;
-import org.conscrypt.io.IoUtils;
-import org.junit.Assert;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.lang.management.ManagementFactory;
-import java.util.Iterator;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.String;
@@ -52,11 +42,35 @@ public class chainMLClient {
             return;
         }
     }
+    public void sendUploadTime(double execTime, String device) {
+        TimeRequest request = TimeRequest.newBuilder().setTime(execTime).setDevice(device).build();
+        TimeReply response;
+        try {
+            response = blockingStub.sendUploadTime(request);
+            logger.info(response.getName());
+        } catch (StatusRuntimeException e) {
+            logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+            return;
+        }
+    }
+    //
+    //Send execution time to the controller
+    public void sendExecTime(double execTime, String device) {
+        TimeRequest request = TimeRequest.newBuilder().setTime(execTime).setDevice(device).build();
+        TimeReply response;
+        try {
+            response = blockingStub.sendExecTime(request);
+            logger.info(response.getName());
+        } catch (StatusRuntimeException e) {
+            logger.log(Level.WARNING, "RPC failed: {0}", e.getStatus());
+            return;
+        }
+    }
     public void shutdown() throws InterruptedException {
         channel.shutdown().awaitTermination(10, TimeUnit.SECONDS);
     }
 
-    //Function to upload file to the server, arg: file path
+    //Function to upload file to the server, arg: file path, type of file sent
     public void uploadFile(String imagePath, String type) throws InterruptedException {
         final CountDownLatch finishLatch = new CountDownLatch(1);
 

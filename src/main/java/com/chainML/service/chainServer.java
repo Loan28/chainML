@@ -25,7 +25,7 @@ public class chainServer {
 
     public void start() throws IOException{
         server.start();
-        logger.info("server started on port" + port);
+        logger.info("server started on port " + port);
 
         Runtime.getRuntime().addShutdownHook(new Thread() {
             @Override
@@ -52,7 +52,7 @@ public class chainServer {
         }
     }
     public static void main(String[] args) throws InterruptedException, IOException {
-        DiskFileStore imageStore = new DiskFileStore("img");
+        DiskFileStore imageStore = new DiskFileStore("files"); // Specify where to store files
         chainServer server = new chainServer(50051, imageStore);
         server.start();
         server.blockUntilShutdown();
